@@ -15,9 +15,34 @@ tab1, tab2, tab3, tab4 = st.tabs([
 ])
 
 with tab1:
-    text = st.text_area("Document")
+from utils.file_parser import parse_file
+
+with tab1:
+    st.subheader("Upload Document")
+
+    uploaded = st.file_uploader(
+        "Upload PDF / Image / Text",
+        type=["pdf","png","jpg","jpeg","webp","txt"]
+    )
+
+    manual = st.text_area("atau paste teks manual")
+
     if st.button("Analyze"):
-        st.json(analyze_document(text))
+
+        text = ""
+
+        if uploaded:
+            text = parse_file(uploaded)
+
+        if manual:
+            text += manual
+
+        if text.strip()=="":
+            st.warning("No input")
+        else:
+            result = analyze_document(text)
+            st.json(result)
+
 
 with tab2:
     ctx = st.text_area("Situation")
