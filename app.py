@@ -39,7 +39,7 @@ with tab1:
             st.warning("No input")
         else:
             result = analyze_document(text)
-            st.json(result)
+            st.markdown(result)
 
 
 with tab2:
