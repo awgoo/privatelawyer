@@ -16,9 +16,6 @@ tab1, tab2, tab3, tab4 = st.tabs([
 ])
 
 with tab1:
-from utils.file_parser import parse_file
-
-with tab1:
     st.subheader("Upload Document")
 
     uploaded = st.file_uploader(
