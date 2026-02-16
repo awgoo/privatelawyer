@@ -1,4 +1,3 @@
-import json
 from core.client import chat
 from core.config import MODEL, TEMPERATURE_ANALYSIS
 from utils.retry import retry
@@ -11,23 +10,22 @@ def analyze_document(text):
     prompt = f"""
 Analyze document and detect harmful clauses.
 
-Return JSON:
-{{
- "clauses":[
-  {{
-   "original":"",
-   "risk":"",
-   "reason":"",
-   "fix":""
-  }}
- ]
-}}
+Output format:
+
+KLAUSUL 1
+Teks Asli:
+Risiko:
+Penjelasan:
+Saran Perbaikan:
+
+KLAUSUL 2
+...
 
 Document:
 {text}
 """
 
-    raw = chat(
+    result = chat(
         [
             {"role":"system","content":SYSTEM},
             {"role":"user","content":prompt}
@@ -36,4 +34,4 @@ Document:
         TEMPERATURE_ANALYSIS
     )
 
-    return raw
+    return result
