@@ -36,4 +36,4 @@ Document:
         TEMPERATURE_ANALYSIS
     )
 
-    return json.loads(raw)
+    return raw
