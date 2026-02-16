@@ -1,0 +1,35 @@
+import streamlit as st
+from services.analyzer import analyze_document
+from services.negotiator import generate_reply
+from services.timeline import build_timeline
+from services.scorer import score_case
+
+st.set_page_config(page_title="Exit Assistant AI", layout="wide")
+st.title("AI Employment Exit Assistant")
+
+tab1, tab2, tab3, tab4 = st.tabs([
+    "Analyzer",
+    "Reply",
+    "Timeline",
+    "Score"
+])
+
+with tab1:
+    text = st.text_area("Document")
+    if st.button("Analyze"):
+        st.json(analyze_document(text))
+
+with tab2:
+    ctx = st.text_area("Situation")
+    if st.button("Generate"):
+        st.write(generate_reply(ctx))
+
+with tab3:
+    data = st.text_area("Events")
+    if st.button("Build"):
+        st.write(build_timeline(data))
+
+with tab4:
+    facts = st.text_area("Facts")
+    if st.button("Evaluate"):
+        st.write(score_case(facts))
