@@ -3,6 +3,7 @@ from services.analyzer import analyze_document
 from services.negotiator import generate_reply
 from services.timeline import build_timeline
 from services.scorer import score_case
+from utils.file_parser import parse_file
 
 st.set_page_config(page_title="Exit Assistant AI", layout="wide")
 st.title("AI Employment Exit Assistant")
